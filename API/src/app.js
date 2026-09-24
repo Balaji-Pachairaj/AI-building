@@ -21,13 +21,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // CORS Configuration
-const corsOrigin = process.env.CORS_ORIGIN || '*';
 app.use(
   cors({
-    origin: corsOrigin === '*' ? '*' : corsOrigin.split(','),
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-request-id', 'x-client-timestamp', '*'],
   })
 );
 
