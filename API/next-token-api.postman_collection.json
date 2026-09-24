@@ -1,0 +1,100 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Next Token Prediction API",
+    "description": "Postman collection for testing the 3 Next Token Prediction APIs: Get Models, Get Next Token, and Get Token History.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Get Models ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/get-models-id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "get-models-id"
+          ]
+        },
+        "description": "Returns available models with internal IDs ordered from cheaper to more costly."
+      },
+      "response": []
+    },
+    {
+      "name": "2. Get Next Token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/get-next-token?input=The weather today is&tokens=2&model_id=1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "get-next-token"
+          ],
+          "query": [
+            {
+              "key": "input",
+              "value": "The weather today is",
+              "description": "User input sequence"
+            },
+            {
+              "key": "tokens",
+              "value": "2",
+              "description": "Number of next tokens to generate"
+            },
+            {
+              "key": "model_id",
+              "value": "1",
+              "description": "Internal model ID (1 = gpt-5, 2 = gpt-4o, 3 = gpt-4-turbo, 4 = o3-mini, 5 = o1-mini, 6 = o1, 7 = o1-pro)"
+            }
+          ]
+        },
+        "description": "Generates next N tokens from input using the selected internal model ID and saves history to MongoDB."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get Next Token History",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/get-next-token-history?page=1&limit=20",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "get-next-token-history"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Page number (optional, default 1)"
+            },
+            {
+              "key": "limit",
+              "value": "20",
+              "description": "Number of records per page (optional, default 20)"
+            }
+          ]
+        },
+        "description": "Retrieves the stored input/output token prediction history from MongoDB."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

@@ -5,6 +5,8 @@ const morgan = require('morgan');
 
 const apiRoutes = require('./routes');
 const buildingStuffsRoutes = require('./routes/buildingStuffs.routes');
+const nextTokenRoutes = require('./routes/next-token.routes');
+const modelsRoutes = require('./routes/models.routes');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
@@ -45,15 +47,22 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Welcome to the Express Boilerplate API',
+    message: 'Welcome to the Next Token Prediction & Boilerplate API',
     endpoints: {
       health: '/api/health',
+      getNextToken: '/get-next-token?input=The%20weather%20today%20is&tokens=2&model_id=1',
+      getModelsId: '/get-models-id',
+      getNextTokenHistory: '/get-next-token-history',
       hitLogger: '/api/hit (POST)',
       buildingStuffs: '/api/building-stuffs or /building-stuffs',
       logs: '/api/logs',
     },
   });
 });
+
+// Direct next-token prediction routes (API 1, API 2, API 3)
+app.use('/', nextTokenRoutes);
+app.use('/', modelsRoutes);
 
 // Direct "/building-stuffs" route (as requested in requirement #3)
 app.use('/building-stuffs', buildingStuffsRoutes);

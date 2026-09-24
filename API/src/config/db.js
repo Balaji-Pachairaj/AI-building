@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
  * Connect to MongoDB using Mongoose ORM
  */
 const connectDB = async () => {
-  const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/express_boilerplate_db';
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/express_boilerplate_db';
   
   try {
     console.log('[MongoDB] Connecting to database...');
