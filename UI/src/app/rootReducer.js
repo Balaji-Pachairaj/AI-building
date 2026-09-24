@@ -4,8 +4,10 @@ import buildingStuffsReducer from '../features/buildingStuffs/buildingStuffsSlic
 import hitLoggerReducer from '../features/hitLogger/hitLoggerSlice';
 import logsReducer from '../features/logs/logsSlice';
 import notificationReducer from '../features/notifications/notificationSlice';
+import nextTokenReducer from '../features/nextToken/nextTokenSlice';
 
 const rootReducer = combineReducers({
+  nextToken: nextTokenReducer,
   health: healthReducer,
   buildingStuffs: buildingStuffsReducer,
   hitLogger: hitLoggerReducer,

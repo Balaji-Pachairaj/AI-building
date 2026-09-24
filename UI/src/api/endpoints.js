@@ -3,6 +3,13 @@
  */
 export const ENDPOINTS = {
   HEALTH: '/api/health',
+
+  // Next Token Prediction Endpoints
+  MODELS: '/get-models-id',
+  NEXT_TOKEN: '/get-next-token',
+  NEXT_TOKEN_HISTORY: '/get-next-token-history',
+
+  // Boilerplate & Logging Endpoints
   BUILDING_STUFFS: '/building-stuffs',
   BUILDING_STUFFS_HIT: '/building-stuffs/hit',
   BUILDING_STUFFS_BY_ID: (id) => `/building-stuffs/${id}`,

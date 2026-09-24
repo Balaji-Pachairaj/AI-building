@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout';
+import NextTokenDashboardPage from './pages/NextTokenDashboardPage';
 import HomePage from './pages/HomePage';
 import HealthPage from './pages/HealthPage';
 import BuildingStuffsPage from './pages/BuildingStuffsPage';
@@ -13,8 +14,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          {/* Landing route '/' with list linking to boilerplate code */}
+          {/* Landing route '/' with list linking to all applications */}
           <Route index element={<HomePage />} />
+          <Route path="apps" element={<Navigate to="/" replace />} />
+
+          {/* Next Token Prediction Dashboard */}
+          <Route path="next_token" element={<NextTokenDashboardPage />} />
+          <Route path="next-token" element={<Navigate to="/next_token" replace />} />
 
           {/* Boilerplate code & health check route */}
           <Route path="boilerplate" element={<HealthPage />} />

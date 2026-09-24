@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { LayoutGrid, Activity, Layers, Zap, Database, Server } from 'lucide-react';
+import { LayoutGrid, Activity, Layers, Zap, Database, Server, Sparkles } from 'lucide-react';
 
 const Navbar = () => {
   const { status, duration } = useSelector((state) => state.health);
@@ -12,9 +12,9 @@ const Navbar = () => {
     <header className="navbar">
       <div className="navbar-inner">
         <NavLink to="/" className="nav-brand">
-          <Server size={24} color="var(--accent-primary)" />
+          <Server size={22} color="var(--accent-primary)" />
           <span>API Manager</span>
-          <span className="nav-brand-badge">Express</span>
+          <span className="nav-brand-badge">Hub</span>
         </NavLink>
 
         <nav>
@@ -27,6 +27,15 @@ const Navbar = () => {
               >
                 <LayoutGrid size={16} />
                 <span>All Apps</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/next_token"
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                <Sparkles size={16} />
+                <span>Next Token</span>
               </NavLink>
             </li>
             <li>

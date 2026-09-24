@@ -92,7 +92,10 @@ axiosClient.interceptors.response.use(
 
     if (error.response) {
       // Server responded with an error status (4xx, 5xx)
-      const serverMessage = error.response.data?.message || error.response.statusText;
+      const serverMessage =
+        error.response.data?.error?.message ||
+        error.response.data?.message ||
+        error.response.statusText;
       standardizedError.message = serverMessage || `Server returned error (${error.response.status})`;
 
       console.error(

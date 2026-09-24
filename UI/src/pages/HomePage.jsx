@@ -12,13 +12,25 @@ import {
 
 const APPLICATIONS = [
   {
+    id: 'next-token-prediction',
+    name: 'Next Token Prediction',
+    category: 'AI & Language Models',
+    tag: 'v1.0.0',
+    status: 'Active',
+    icon: <Sparkles size={24} color="#6366f1" />,
+    iconBg: 'rgba(99, 102, 241, 0.15)',
+    description:
+      'Generate next tokens using OpenAI models, inspect model costs, and view MongoDB persistent generation history.',
+    dashboardRoute: '/next_token',
+  },
+  {
     id: 'express-mongodb-boilerplate',
     name: 'Express & MongoDB Boilerplate',
     category: 'Backend & Infrastructure',
     tag: 'v1.0.0',
     status: 'Ready',
-    icon: <Server size={24} color="#6366f1" />,
-    iconBg: 'rgba(99, 102, 241, 0.12)',
+    icon: <Server size={24} color="#10b981" />,
+    iconBg: 'rgba(16, 185, 129, 0.12)',
     description:
       'Core API suite with MongoDB Mongoose ORM, Building Stuffs module, Hit Logging engine, and health diagnostics.',
     dashboardRoute: '/boilerplate',
