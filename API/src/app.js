@@ -45,6 +45,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Root welcome endpoint
 app.get('/', (req, res) => {
+  
   res.status(200).json({
     success: true,
     message: 'Welcome to the Next Token Prediction & Boilerplate API',
