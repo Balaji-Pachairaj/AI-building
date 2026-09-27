@@ -8,6 +8,7 @@ const buildingStuffsRoutes = require('./routes/buildingStuffs.routes');
 const nextTokenRoutes = require('./routes/next-token.routes');
 const modelsRoutes = require('./routes/models.routes');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
+const dbConnectionMiddleware = require('./middlewares/dbConnection');
 const mongoose = require('mongoose');
 const TokenHistory = require('./models/token-history.model');
 
@@ -40,6 +41,9 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 // Built-in Express JSON Parser (for redundancy and standard express compatibility)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Database Connection Middleware (Automatic on-demand connection for Serverless/Vercel)
+app.use(dbConnectionMiddleware);
 
 // ==========================================
 // Base Routes
@@ -79,8 +83,7 @@ app.get('/', async (req, res, next) => {
         host: mongoose.connection.host || null,
         collections: collectionsList,
         proofOfData: dbDataProof,
-        connectionString1: process.env.MONGO_URI,
-        connectionString2: process.env.MONGODB_URI
+        mongoUriConfigured: Boolean(process.env.MONGODB_URI || process.env.MONGO_URI),
       },
       endpoints: {
         health: '/api/health',
