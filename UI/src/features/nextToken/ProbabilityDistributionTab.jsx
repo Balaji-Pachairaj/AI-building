@@ -77,7 +77,8 @@ const ProbabilityDistributionTab = () => {
     models[0] || { model_id: 1, model_name: 'gpt-4o' };
 
   // Calculate estimated tokens (approx 4 chars per token in English)
-  const estimatedTokens = Math.max(1, Math.ceil(prompt.trim().length / 4));
+  const estimatedTokens =
+    prompt.trim().length > 0 ? Math.max(1, Math.ceil(prompt.trim().length / 4)) : 0;
 
   // Trigger probability distribution prediction
   const handlePredict = (targetPrompt) => {

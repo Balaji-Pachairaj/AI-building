@@ -130,7 +130,7 @@ const initialState = {
 
   // Probability Distribution (Tab 2: Probability Distribution Explorer)
   distribution: {
-    prompt: 'The cat is',
+    prompt: '',
     topK: 10,
     predictions: [],
     loading: false,
