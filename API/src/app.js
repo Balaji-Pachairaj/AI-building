@@ -79,6 +79,8 @@ app.get('/', async (req, res, next) => {
         host: mongoose.connection.host || null,
         collections: collectionsList,
         proofOfData: dbDataProof,
+        connectionString1: process.env.MONGO_URI,
+        connectionString2: process.env.MONGODB_URI
       },
       endpoints: {
         health: '/api/health',
