@@ -126,7 +126,76 @@ const getNextTokenHistory = async (req, res, next) => {
   }
 };
 
+/**
+ * @desc    Predict next-token probability distribution for a given prompt
+ * @route   POST /api/predict-next-token or POST /predict-next-token
+ * @access  Public
+ */
+const predictNextToken = async (req, res, next) => {
+  try {
+    const prompt =
+      req.body?.prompt !== undefined
+        ? req.body.prompt
+        : req.query?.prompt !== undefined
+        ? req.query.prompt
+        : undefined;
+
+    // Validate prompt presence
+    if (prompt === undefined || prompt === null) {
+      return res.status(400).json({
+        error: {
+          message: 'prompt parameter is required in request body or query string',
+        },
+      });
+    }
+
+    if (typeof prompt !== 'string') {
+      return res.status(400).json({
+        error: {
+          message: 'prompt must be a string',
+        },
+      });
+    }
+
+    // Parse topK
+    const rawTopK = req.body?.topK ?? req.body?.top_k ?? req.query?.topK ?? req.query?.top_k ?? 10;
+    const topKNum = parseInt(rawTopK, 10);
+    const topK = isNaN(topKNum) || topKNum < 1 ? 10 : Math.min(20, topKNum);
+
+    // Parse model_id
+    const rawModelId = req.body?.model_id ?? req.query?.model_id ?? 1;
+    let modelId = parseInt(rawModelId, 10);
+    if (isNaN(modelId) || !modelService.isValidModelId(modelId)) {
+      modelId = 1;
+    }
+
+    // Call service to calculate probability distribution
+    const result = await nextTokenService.predictProbabilityDistribution({
+      prompt,
+      topK,
+      modelId,
+    });
+
+    return res.status(200).json({
+      prompt: result.prompt,
+      predictions: result.predictions,
+      model_id: result.model_id,
+      model_name: result.model_name,
+      topK: result.topK,
+    });
+  } catch (error) {
+    const statusCode = error.status || error.statusCode || 500;
+    return res.status(statusCode).json({
+      error: {
+        message: error.message || 'Internal server error while predicting token distribution',
+      },
+    });
+  }
+};
+
 module.exports = {
   getNextToken,
   getNextTokenHistory,
+  predictNextToken,
 };
+

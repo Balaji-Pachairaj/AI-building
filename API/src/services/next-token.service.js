@@ -109,6 +109,54 @@ class NextTokenService {
       throw err;
     }
   }
+
+  /**
+   * Predict the probability distribution of possible next tokens / words.
+   *
+   * @param {object} params
+   * @param {string} params.prompt - Input text prompt
+   * @param {number} [params.topK=10] - Number of candidate tokens to return
+   * @param {number} [params.modelId=1] - Internal model ID
+   * @returns {Promise<object>} Response with prompt, predictions, model_id, model_name
+   */
+  async predictProbabilityDistribution({ prompt, topK = 10, modelId = 1 }) {
+    const model = modelService.getModelById(modelId) || modelService.getAllModels()[0];
+    const k = Math.min(20, Math.max(1, parseInt(topK, 10) || 10));
+
+    // Generate probability distribution from OpenAI
+    const predictions = await openaiService.predictNextTokenDistribution({
+      modelConfig: model,
+      prompt,
+      topK: k,
+    });
+
+    // Optionally persist generation to MongoDB TokenHistory
+    try {
+      const topPreview = predictions
+        .slice(0, 3)
+        .map((p) => `${p.token.trim()} (${(p.probability * 100).toFixed(1)}%)`)
+        .join(', ');
+
+      await TokenHistory.create({
+        input: prompt,
+        tokensRequested: k,
+        modelId: model.id,
+        modelName: model.name,
+        output: `[Top Probabilities]: ${topPreview}`,
+      });
+    } catch (dbErr) {
+      // Non-blocking log if DB write fails
+      console.warn(`[NextTokenService] History logging failed: ${dbErr.message}`);
+    }
+
+    return {
+      prompt,
+      predictions,
+      model_id: model.id,
+      model_name: model.name,
+      topK: k,
+    };
+  }
 }
 
 module.exports = new NextTokenService();

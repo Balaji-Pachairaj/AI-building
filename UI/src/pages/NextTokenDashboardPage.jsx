@@ -17,6 +17,7 @@ import {
   AlertCircle,
   FileText,
   Activity,
+  BarChart2,
 } from 'lucide-react';
 import {
   fetchModels,
@@ -24,7 +25,9 @@ import {
   generateNextTokens,
   setSelectedModelId,
   clearGeneration,
+  setActiveTab,
 } from '../features/nextToken/nextTokenSlice';
+import ProbabilityDistributionTab from '../features/nextToken/ProbabilityDistributionTab';
 
 const PRESET_PROMPTS = [
   'The weather today is',
@@ -43,6 +46,7 @@ const NextTokenDashboardPage = () => {
     selectedModelId,
     generation,
     history,
+    activeTab,
   } = useSelector((state) => state.nextToken);
 
   const { status: healthStatus, duration: healthDuration } = useSelector(
@@ -196,8 +200,59 @@ const NextTokenDashboardPage = () => {
         </button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid-3" style={{ marginBottom: '2rem' }}>
+      {/* ---------------------------------------------------- */}
+      {/* Tab Navigation: Current Next Token vs Probability   */}
+      {/* ---------------------------------------------------- */}
+      <div className="tabs-container">
+        <button
+          type="button"
+          className={`tab-button ${activeTab === 'current' ? 'active' : ''}`}
+          onClick={() => dispatch(setActiveTab('current'))}
+        >
+          <Zap size={16} />
+          <span>Current Next Token Display</span>
+          <span
+            className={activeTab === 'current' ? 'badge badge-info' : 'badge'}
+            style={{
+              fontSize: '0.7rem',
+              padding: '1px 6px',
+              background: activeTab === 'current' ? 'rgba(255,255,255,0.2)' : 'var(--bg-tertiary)',
+              color: '#fff',
+            }}
+          >
+            GET /get-next-token
+          </span>
+        </button>
+
+        <button
+          type="button"
+          className={`tab-button ${activeTab === 'distribution' ? 'active' : ''}`}
+          onClick={() => dispatch(setActiveTab('distribution'))}
+        >
+          <BarChart2 size={16} />
+          <span>Probability Distribution</span>
+          <span
+            className={activeTab === 'distribution' ? 'badge badge-success' : 'badge'}
+            style={{
+              fontSize: '0.7rem',
+              padding: '1px 6px',
+              background: activeTab === 'distribution' ? 'rgba(16, 185, 129, 0.3)' : 'var(--bg-tertiary)',
+              color: activeTab === 'distribution' ? '#fff' : 'var(--text-secondary)',
+            }}
+          >
+            POST /api/predict-next-token
+          </span>
+        </button>
+      </div>
+
+      {/* Tab 2: Probability Distribution */}
+      {activeTab === 'distribution' && <ProbabilityDistributionTab />}
+
+      {/* Tab 1: Current Next Token Display */}
+      {activeTab === 'current' && (
+        <>
+          {/* Stats Cards */}
+          <div className="grid-3" style={{ marginBottom: '2rem' }}>
         {/* Total Generations */}
         <div className="stat-box">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -876,6 +931,8 @@ const NextTokenDashboardPage = () => {
           </div>
         )}
       </div>
+        </>
+      )}
     </div>
   );
 };

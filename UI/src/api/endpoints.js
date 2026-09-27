@@ -8,6 +8,7 @@ export const ENDPOINTS = {
   MODELS: '/get-models-id',
   NEXT_TOKEN: '/get-next-token',
   NEXT_TOKEN_HISTORY: '/get-next-token-history',
+  PREDICT_NEXT_TOKEN: '/api/predict-next-token',
 
   // Boilerplate & Logging Endpoints
   BUILDING_STUFFS: '/building-stuffs',

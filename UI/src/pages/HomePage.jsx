@@ -20,7 +20,7 @@ const APPLICATIONS = [
     icon: <Sparkles size={24} color="#6366f1" />,
     iconBg: 'rgba(99, 102, 241, 0.15)',
     description:
-      'Generate next tokens using OpenAI models, inspect model costs, and view MongoDB persistent generation history.',
+      'Explore next-word prediction with interactive probability distributions, step-by-step token generation, model cost comparison, and MongoDB history.',
     dashboardRoute: '/next_token',
   },
   {

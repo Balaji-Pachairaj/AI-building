@@ -49,6 +49,25 @@ export const nextTokenApi = {
     });
     return response.data;
   },
+
+  /**
+   * Predict next-token probability distribution for a given prompt
+   * @param {object} params
+   * @param {string} params.prompt - Input prompt sequence
+   * @param {number} [params.topK=10] - Number of candidate tokens
+   * @param {number} [params.model_id=1] - Internal model ID
+   */
+  predictProbabilityDistribution: async ({ prompt, topK = 10, model_id = 1 }) => {
+    const response = await axiosClient.post(ENDPOINTS.PREDICT_NEXT_TOKEN, {
+      prompt,
+      topK,
+      model_id,
+    });
+    return {
+      data: response.data,
+      duration: response.duration,
+    };
+  },
 };
 
 export default nextTokenApi;

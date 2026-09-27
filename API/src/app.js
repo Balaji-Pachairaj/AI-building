@@ -90,6 +90,7 @@ app.get('/', async (req, res, next) => {
         getNextToken: '/get-next-token?input=The%20weather%20today%20is&tokens=2&model_id=1',
         getModelsId: '/get-models-id',
         getNextTokenHistory: '/get-next-token-history',
+        predictNextToken: '/api/predict-next-token (POST)',
         hitLogger: '/api/hit (POST)',
         buildingStuffs: '/api/building-stuffs or /building-stuffs',
         logs: '/api/logs',
