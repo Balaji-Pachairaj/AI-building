@@ -9,10 +9,17 @@ import HitLoggerPage from './pages/HitLoggerPage';
 import LogsPage from './pages/LogsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
+import GraphNextTokenPage from './pages/GraphNextTokenPage';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Fullscreen Cosmic "Graph the next token" View (No Navbar or Standard Layout) */}
+        <Route path="next_token/graph" element={<GraphNextTokenPage />} />
+        <Route path="next-token/graph" element={<Navigate to="/next_token/graph" replace />} />
+        <Route path="graph-next-token" element={<Navigate to="/next_token/graph" replace />} />
+
         <Route path="/" element={<MainLayout />}>
           {/* Landing route '/' with list linking to all applications */}
           <Route index element={<HomePage />} />

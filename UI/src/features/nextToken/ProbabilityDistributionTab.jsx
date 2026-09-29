@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Sparkles,
@@ -16,6 +17,7 @@ import {
   Cpu,
   ChevronRight,
   Info,
+  Network,
 } from 'lucide-react';
 import {
   fetchProbabilityDistribution,
@@ -218,15 +220,42 @@ const ProbabilityDistributionTab = () => {
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setShowExplainer(!showExplainer)}
-          className="btn btn-outline"
-          style={{ fontSize: '0.8rem', padding: '0.45rem 0.85rem' }}
-        >
-          <HelpCircle size={14} />
-          <span>{showExplainer ? 'Hide Guide' : 'How It Works'}</span>
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <Link
+            to="/next_token/graph"
+            className="btn btn-primary"
+            style={{
+              fontSize: '0.85rem',
+              padding: '0.5rem 1rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.55rem',
+              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)',
+              border: 'none',
+              boxShadow: '0 4px 18px rgba(139, 92, 246, 0.45)',
+              textDecoration: 'none',
+              color: '#ffffff',
+              fontWeight: 700,
+              borderRadius: 'var(--radius-md)',
+              transition: 'all 0.2s ease',
+            }}
+            title="Open full-screen cosmic interactive graph view"
+          >
+            <Network size={16} />
+            <span>Graph the next token</span>
+            <ChevronRight size={14} />
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setShowExplainer(!showExplainer)}
+            className="btn btn-outline"
+            style={{ fontSize: '0.8rem', padding: '0.45rem 0.85rem' }}
+          >
+            <HelpCircle size={14} />
+            <span>{showExplainer ? 'Hide Guide' : 'How It Works'}</span>
+          </button>
+        </div>
       </div>
 
       {/* Explainer Accordion Card */}
@@ -607,11 +636,33 @@ const ProbabilityDistributionTab = () => {
             </p>
           </div>
 
-          {latency && (
-            <span className="badge badge-success" style={{ fontSize: '0.75rem' }}>
-              Computed in {latency}ms ({activeModel.model_name})
-            </span>
-          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link
+              to="/next_token/graph"
+              className="btn btn-secondary"
+              style={{
+                fontSize: '0.78rem',
+                padding: '0.35rem 0.75rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                textDecoration: 'none',
+                borderColor: 'rgba(139, 92, 246, 0.45)',
+                color: '#c084fc',
+                background: 'rgba(139, 92, 246, 0.12)',
+              }}
+              title="Open full-screen interactive cosmic graph view"
+            >
+              <Network size={14} />
+              <span>Graph the next token</span>
+            </Link>
+
+            {latency && (
+              <span className="badge badge-success" style={{ fontSize: '0.75rem' }}>
+                Computed in {latency}ms ({activeModel.model_name})
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Error message display */}

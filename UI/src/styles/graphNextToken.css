@@ -1,0 +1,1135 @@
+@import url('https://fonts.googleapis.com/css2?family=Amarante&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ==========================================================================
+   Cosmic "Graph The Next Token" Stylesheet
+   Space Odyssey Theme: Stable Background, Galaxy Scale, Compact Cards & Backlight
+   Fonts: Amarante (Website Title) & Roboto (Cosmic Interface)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Root Container & Cosmic Canvas
+   -------------------------------------------------------------------------- */
+.cosmic-page-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  background: radial-gradient(circle at 15% 15%, #0c1026 0%, #050713 45%, #010206 100%);
+  color: #f8fafc;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden !important;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background Canvas for Billions of Stars (Completely Stable in Space) */
+.cosmic-starfield-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   White Sun (Top-Left Cosmic Sky)
+   -------------------------------------------------------------------------- */
+.cosmic-white-sun {
+  position: fixed;
+  top: -30px;
+  left: -30px;
+  width: 280px;
+  height: 280px;
+  pointer-events: none;
+  z-index: 2;
+  user-select: none;
+  filter: drop-shadow(0 0 45px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 90px rgba(240, 249, 255, 0.45));
+}
+
+.sun-ambient-bloom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 440px;
+  height: 440px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(240, 249, 255, 0.14) 30%,
+    rgba(224, 242, 254, 0.05) 55%,
+    transparent 75%
+  );
+  filter: blur(28px);
+  pointer-events: none;
+  animation: sunGlowPulse 8s ease-in-out infinite alternate;
+}
+
+.sun-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sun-rays-group {
+  transform-origin: 150px 150px;
+  animation: sunRaysRotate 60s linear infinite;
+}
+
+@keyframes sunGlowPulse {
+  0% {
+    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+@keyframes sunRaysRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Top Bar Navigation: Back Button, Grand Website Title, & Cosmic Info
+   -------------------------------------------------------------------------- */
+.cosmic-top-bar {
+  position: relative;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.cosmic-top-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cosmic-top-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.15rem;
+}
+
+/* Grand Website Title in Roboto Typography */
+.cosmic-website-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  line-height: 1.15;
+  margin: 0;
+  background: linear-gradient(
+    135deg, 
+    #ffffff 0%, 
+    #f1f5f9 20%, 
+    #7dd3fc 50%, 
+    #c084fc 78%, 
+    #f472b6 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.45)) drop-shadow(0 0 35px rgba(192, 132, 252, 0.3));
+  text-shadow: none;
+}
+
+.cosmic-website-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.cosmic-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 1.15rem;
+  background: rgba(12, 17, 34, 0.7);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 9999px;
+  color: #e2e8f0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5),
+              0 0 15px rgba(139, 92, 246, 0.2),
+              inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
+
+.cosmic-back-btn:hover {
+  background: rgba(24, 32, 60, 0.85);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateX(-3px);
+  box-shadow: 0 6px 22px rgba(56, 189, 248, 0.35),
+              0 0 25px rgba(56, 189, 248, 0.3),
+              inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.cosmic-top-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+.cosmic-model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.cosmic-model-select {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+}
+
+.cosmic-icon-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 17, 34, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cosmic-icon-btn:hover {
+  color: #f8fafc;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(24, 32, 60, 0.85);
+}
+
+@media (max-width: 900px) {
+  .cosmic-top-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Main Interactive Stage: Galaxy Scale Layout (Distance View)
+   -------------------------------------------------------------------------- */
+.cosmic-stage {
+  position: relative;
+  z-index: 10;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 2rem 1rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 290px 290px;
+  justify-content: space-between;
+  column-gap: 180px;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 75px);
+  max-height: calc(100vh - 75px);
+  overflow: visible;
+}
+
+@media (max-width: 1024px) {
+  .cosmic-stage {
+    grid-template-columns: 270px 215px;
+    column-gap: 140px;
+    padding: 1rem 1.5rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cosmic-stage {
+    grid-template-columns: 1fr;
+    row-gap: 45px;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SVG Wires Canvas (Links Input Box to Next Token Boxes across Galaxy Void)
+   -------------------------------------------------------------------------- */
+.cosmic-wires-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: visible;
+}
+
+.cosmic-wire-path-bg {
+  fill: none;
+  stroke: rgba(99, 102, 241, 0.2);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+.cosmic-wire-path-glow {
+  fill: none;
+  stroke: rgba(168, 85, 247, 0.55);
+  stroke-width: 1.6;
+  filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.7));
+  stroke-linecap: round;
+  transition: all 0.3s ease;
+}
+
+.cosmic-wire-path-active {
+  stroke: #38bdf8;
+  filter: drop-shadow(0 0 8px #38bdf8);
+}
+
+/* Animated Data Packet travelling along wire - Calmed, subtle, at max 2 sparks */
+.cosmic-wire-pulse {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.65);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 10 280;
+  animation: wireEnergyFlow 8s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4));
+  opacity: 0.65;
+}
+
+.cosmic-wire-pulse.speedup {
+  animation: wireEnergyFlow 3.8s linear infinite;
+  stroke: rgba(244, 63, 94, 0.7);
+  stroke-dasharray: 10 260;
+  filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.4));
+  opacity: 0.8;
+}
+
+@keyframes wireEnergyFlow {
+  from {
+    stroke-dashoffset: 290;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Terminal Node Pins on Cards */
+.terminal-node {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8, 0 0 20px rgba(56, 189, 248, 0.7);
+  border: 1.5px solid #ffffff;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.terminal-node.source {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.terminal-node.target {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Stationary Input Prompt Card with Backlight & Light Curve
+   -------------------------------------------------------------------------- */
+.cosmic-input-card-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 290px;
+}
+
+/* Floating Suggestion Area in Space Above Prompt Box (Never displaces card) */
+.cosmic-floating-space-container {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: -20px;
+  right: -20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 30;
+  padding-bottom: 14px; /* Bridge gap between suggestions and card so hover is seamless */
+}
+
+.cosmic-input-card-wrapper:hover .cosmic-floating-space-container,
+.cosmic-floating-space-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cosmic-floating-boxes-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+/* Individual small box containing JUST text */
+.cosmic-suggestion-chip {
+  background: rgba(10, 16, 32, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(14px);
+  padding: 0.32rem 0.65rem;
+  color: #e2e8f0;
+  font-size: 0.74rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.65),
+    0 0 12px rgba(56, 189, 248, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Light curve rim on suggestion box */
+.cosmic-suggestion-chip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), #38bdf8, transparent);
+  pointer-events: none;
+}
+
+.cosmic-suggestion-chip:hover {
+  background: rgba(24, 34, 64, 0.95);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 
+    0 6px 18px rgba(0, 0, 0, 0.8),
+    0 0 18px rgba(56, 189, 248, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.45);
+}
+
+.cosmic-suggestion-chip:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Subtle staggered floating animations in space */
+.cosmic-float-0 {
+  animation: cosmicChipFloat 4.2s ease-in-out infinite;
+}
+
+.cosmic-float-1 {
+  animation: cosmicChipFloat 5s ease-in-out infinite 0.8s;
+}
+
+.cosmic-float-2 {
+  animation: cosmicChipFloat 4.6s ease-in-out infinite 1.6s;
+}
+
+@keyframes cosmicChipFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.cosmic-input-card {
+  position: relative;
+  width: 100%;
+  max-width: 290px;
+  background: rgba(10, 15, 30, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  backdrop-filter: blur(18px);
+  padding: 0.95rem 1.1rem;
+  /* Backlight shadows & rim glow */
+  box-shadow: 
+    0 0 1px 1px rgba(255, 255, 255, 0.15),
+    0 0 22px rgba(99, 102, 241, 0.35),
+    0 0 45px rgba(56, 189, 248, 0.2),
+    0 16px 35px rgba(0, 0, 0, 0.85),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transform: none !important; /* CRITICAL: Never moves on hover */
+  z-index: 15;
+}
+
+/* Backlight Aura (Like there is light in the back) */
+.cosmic-input-card::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%, 
+    rgba(56, 189, 248, 0.45) 0%, 
+    rgba(139, 92, 246, 0.25) 45%, 
+    transparent 75%
+  );
+  filter: blur(10px);
+  z-index: -1;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Light Curve Rim Highlight (Starlight crescent curving on top border) */
+.cosmic-input-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.7) 20%, 
+    #38bdf8 50%, 
+    rgba(255, 255, 255, 0.7) 80%, 
+    transparent 100%
+  );
+  border-radius: 9999px;
+  filter: drop-shadow(0 0 4px #38bdf8) drop-shadow(0 0 7px rgba(255, 255, 255, 0.9));
+  pointer-events: none;
+}
+
+.cosmic-input-card:hover {
+  transform: none !important; /* CRITICAL: Rock-solid stationary */
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 
+    0 0 1px 1px rgba(255, 255, 255, 0.25),
+    0 0 30px rgba(56, 189, 248, 0.45),
+    0 0 60px rgba(168, 85, 247, 0.3),
+    0 18px 40px rgba(0, 0, 0, 0.9),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.cosmic-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+.cosmic-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.cosmic-card-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+
+.cosmic-card-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+}
+
+/* Prompt Starters Chips */
+.cosmic-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.cosmic-chip {
+  background: rgba(24, 32, 54, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 0.18rem 0.48rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cosmic-chip:hover {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Prompt Textarea with Caret-Tracking Border Light & Border Shadow
+   -------------------------------------------------------------------------- */
+.cosmic-textarea-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 11px;
+  padding: 1.8px; /* Dynamic glowing border ring */
+  box-sizing: border-box;
+  --caret-x: 24px;
+  --caret-y: 24px;
+  --caret-shadow-dx: 0px;
+  --caret-shadow-dy: 0px;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  /* Default border */
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+/* Outer Border Aura / Shadow that follows the typing cursor */
+.cosmic-textarea-aura {
+  position: absolute;
+  inset: -4px;
+  border-radius: 13px;
+  background: radial-gradient(
+    90px circle at var(--caret-x, 24px) var(--caret-y, 24px),
+    rgba(56, 189, 248, 0.8) 0%,
+    rgba(14, 165, 233, 0.45) 40%,
+    rgba(56, 189, 248, 0.15) 70%,
+    transparent 85%
+  );
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* When typing / focused: border light & shadow dynamically follow typing caret */
+.cosmic-textarea-wrapper.focused {
+  background: radial-gradient(
+    80px circle at var(--caret-x, 24px) var(--caret-y, 24px),
+    #ffffff 0%,
+    #38bdf8 30%,
+    #0284c7 60%,
+    rgba(56, 189, 248, 0.25) 85%,
+    rgba(255, 255, 255, 0.14) 100%
+  );
+  /* The border shadow shifts toward the text caret location */
+  box-shadow: 
+    var(--caret-shadow-dx, 0px) var(--caret-shadow-dy, 0px) 24px rgba(56, 189, 248, 0.5),
+    var(--caret-shadow-dx, 0px) var(--caret-shadow-dy, 0px) 12px rgba(56, 189, 248, 0.7),
+    0 8px 25px rgba(0, 0, 0, 0.85);
+}
+
+.cosmic-textarea-wrapper.focused .cosmic-textarea-aura {
+  opacity: 1;
+}
+
+/* When hovered (unfocused): border light & shadow moves towards mouse cursor */
+.cosmic-textarea-wrapper:not(.focused).hovered,
+.cosmic-textarea-wrapper:not(.focused):hover {
+  background: radial-gradient(
+    80px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    #ffffff 0%,
+    #38bdf8 35%,
+    #0284c7 65%,
+    rgba(255, 255, 255, 0.14) 100%
+  );
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+}
+
+/* Inner Textarea Container */
+.cosmic-textarea-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  background: rgba(6, 10, 22, 0.94);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cosmic-textarea {
+  width: 100%;
+  min-height: 72px;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.65rem 0.75rem 1.4rem;
+  color: #f1f5f9;
+  font-family: 'Roboto', 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.cosmic-textarea-footer {
+  position: absolute;
+  bottom: 0.35rem;
+  right: 0.65rem;
+  font-size: 0.65rem;
+  color: #64748b;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Generate Next Token Button - Pill with Cursor-Tracking Border Light & Shadow
+   -------------------------------------------------------------------------- */
+.cosmic-generate-btn {
+  position: relative;
+  width: 100%;
+  height: 46px;
+  border-radius: 9999px;
+  padding: 1.8px; /* Forms the border ring */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --shadow-dx: 0px;
+  --shadow-dy: 0px;
+  /* Default border when resting */
+  background: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(56, 189, 248, 0.4) 100%
+  );
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+}
+
+/* Mouse moves the border light & border shadow directly towards cursor (Subtle & soft glow) */
+.cosmic-generate-btn.hovered,
+.cosmic-generate-btn:hover {
+  background: radial-gradient(
+    75px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    #7dd3fc 0%,
+    #0284c7 45%,
+    rgba(56, 189, 248, 0.2) 75%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  /* The border shadow softly shifts and reaches towards the cursor with gentle light */
+  box-shadow: 
+    var(--shadow-dx, 0px) var(--shadow-dy, 0px) 14px rgba(56, 189, 248, 0.24),
+    var(--shadow-dx, 0px) var(--shadow-dy, 0px) 6px rgba(56, 189, 248, 0.32),
+    0 6px 20px rgba(0, 0, 0, 0.85);
+  transform: translateY(-1px);
+}
+
+.cosmic-generate-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.99);
+}
+
+.cosmic-generate-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+}
+
+/* Diffuse aura in space behind the button that follows cursor (Calmed & soft) */
+.cosmic-btn-aura {
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    80px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(56, 189, 248, 0.32) 0%,
+    rgba(14, 165, 233, 0.16) 40%,
+    transparent 70%
+  );
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cosmic-generate-btn.hovered .cosmic-btn-aura,
+.cosmic-generate-btn:hover .cosmic-btn-aura {
+  opacity: 1;
+}
+
+/* Inner Pill Body */
+.cosmic-btn-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: #060919;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background 0.2s ease, text-shadow 0.2s ease;
+}
+
+.cosmic-generate-btn.hovered .cosmic-btn-inner,
+.cosmic-generate-btn:hover:not(:disabled) .cosmic-btn-inner {
+  background: #090e24;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: 5 Minimized Next Token Boxes with Backlight & Light Curve
+   -------------------------------------------------------------------------- */
+.cosmic-tokens-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: min(520px, calc(100vh - 105px));
+  max-height: calc(100vh - 105px);
+  z-index: 15;
+  width: 100%;
+  max-width: 290px;
+}
+
+.cosmic-token-card {
+  position: relative;
+  width: 100%;
+  background: rgba(10, 15, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  backdrop-filter: blur(16px);
+  padding: 0.8rem 1.15rem; /* Generous space inside next token boxes */
+  /* Backlight shadows & rim glow */
+  box-shadow: 
+    0 0 1px 1px rgba(255, 255, 255, 0.12),
+    0 0 16px rgba(139, 92, 246, 0.3),
+    0 0 35px rgba(56, 189, 248, 0.18),
+    0 10px 24px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; /* Generous space between token content and add button */
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+/* Backlight Aura (Light in Back) */
+.cosmic-token-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%, 
+    rgba(56, 189, 248, 0.4) 0%, 
+    rgba(168, 85, 247, 0.22) 45%, 
+    transparent 75%
+  );
+  filter: blur(8px);
+  z-index: -1;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Light Curve Rim Highlight (Curved light on the top edge) */
+.cosmic-token-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.65) 20%, 
+    #38bdf8 50%, 
+    rgba(255, 255, 255, 0.65) 80%, 
+    transparent 100%
+  );
+  border-radius: 9999px;
+  filter: drop-shadow(0 0 3px #38bdf8) drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+  pointer-events: none;
+}
+
+.cosmic-token-card:hover {
+  transform: translateX(3px);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(18, 25, 48, 0.9);
+  box-shadow: 
+    0 0 1px 1px rgba(255, 255, 255, 0.25),
+    0 0 25px rgba(56, 189, 248, 0.45),
+    0 0 45px rgba(168, 85, 247, 0.25),
+    0 12px 28px rgba(0, 0, 0, 0.85),
+    inset 0 1px 1px rgba(255, 255, 255, 0.45);
+}
+
+/* Token Box Left Content: Rank, Prob, Progress, and Token */
+.cosmic-token-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cosmic-token-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.cosmic-prob-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.cosmic-prob-percent {
+  color: #38bdf8;
+  font-weight: 800;
+}
+
+/* Compact Progress bar inside the token box */
+.cosmic-prob-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  margin: 1px 0;
+}
+
+.cosmic-prob-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+  transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+/* Token Value Display */
+.cosmic-token-text {
+  font-family: 'Roboto', 'JetBrains Mono', sans-serif;
+  font-size: 0.98rem;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1px 0;
+}
+
+.space-indicator {
+  color: #64748b;
+  font-size: 0.65rem;
+  user-select: none;
+  font-weight: 400;
+}
+
+/* Compact Add Button ("+") */
+.cosmic-add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  border-radius: 8px;
+  color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.cosmic-add-btn:hover {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
+}
+
+.cosmic-add-btn:active {
+  transform: scale(0.95);
+}
+
+.cosmic-add-btn.added-success {
+  background: #059669;
+  border-color: #34d399;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   Top to Bottom Stagger Loading Animation
+   -------------------------------------------------------------------------- */
+.token-stagger-enter {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.97);
+  filter: blur(3px);
+}
+
+.token-stagger-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.35s ease;
+}
+
+/* Empty / Cleared State Skeleton Shimmer */
+.cosmic-skeleton-slot {
+  height: 15px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.5) 0%,
+    rgba(99, 102, 241, 0.25) 50%,
+    rgba(30, 41, 59, 0.5) 100%
+  );
+  background-size: 200% 100%;
+  animation: cosmicSkeletonPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes cosmicSkeletonPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Toast Message Notification */
+.cosmic-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(12, 17, 34, 0.92);
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  backdrop-filter: blur(16px);
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 25px rgba(52, 211, 153, 0.3);
+  z-index: 9999;
+  animation: toastFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 15px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

@@ -72,7 +72,16 @@ CORS_ORIGIN=*
 | `GET` | `/` | API status and endpoint directory |
 | `GET` | `/api/health` | Health check endpoint |
 
-### 2. Building Stuffs (`/building-stuffs` & `/api/building-stuffs`)
+### 2. Next Token Prediction (`/get-models-id`, `/get-next-token`, `/get-next-token-history`, `/api/predict-next-token`)
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/get-models-id` | List available models ordered cheaper to costly (IDs 1-7) |
+| `GET` | `/get-next-token` | Generate next N tokens (`?input=...&tokens=2&model_id=1`) |
+| `GET` | `/get-next-token-history` | Fetch paginated history from MongoDB (`?page=1&limit=20`) |
+| `POST` | `/api/predict-next-token` | Predict softmax probability distribution of next tokens/words |
+| `GET` | `/api/predict-next-token` | GET variant for next-token probability distribution |
+
+### 3. Building Stuffs (`/building-stuffs` & `/api/building-stuffs`)
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/building-stuffs` | Get all building stuffs items |
@@ -80,7 +89,7 @@ CORS_ORIGIN=*
 | `POST` | `/building-stuffs` | Create new building stuff item |
 | `POST` | `/building-stuffs/hit` | Register a hit directly on building stuffs (saves hitTime & hitBody to DB) |
 
-### 3. Hit Logger & Logs (`/api/hit` & `/api/logs`)
+### 4. Hit Logger & Logs (`/api/hit` & `/api/logs`)
 | Method | Endpoint | Description |
 |---|---|---|
 | `POST` | `/api/hit` | Logs `hitTime` & `hitBody` into MongoDB `Log` collection |
@@ -88,6 +97,22 @@ CORS_ORIGIN=*
 | `GET` | `/api/logs` | Fetch all recorded hit logs (supports `?page=1&limit=20`) |
 | `GET` | `/api/logs/:id` | Fetch specific log entry by MongoDB `_id` |
 | `DELETE`| `/api/logs` | Clear all logs |
+
+---
+
+## 📬 Postman Collection Import
+
+A complete, production-ready Postman v2.1.0 collection and environment configuration are included directly in the `API/` directory:
+
+- **Collection File**: `next-token-api.postman_collection.json` (also mirrored at `postman_collection.json`)
+- **Environment File**: `postman_environment.json`
+
+### How to Import into Postman:
+1. Open **Postman**.
+2. Click the **Import** button in the top left header (or press `Ctrl + O` / `Cmd + O`).
+3. Drag & drop or select `next-token-api.postman_collection.json`.
+4. (Optional) Import `postman_environment.json` to configure the `base_url` variable (`http://localhost:5000`).
+5. Select the imported collection or environment and start executing requests!
 
 ---
 
