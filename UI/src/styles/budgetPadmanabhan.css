@@ -42,7 +42,7 @@
 
 /* Prevent unwanted mobile browser auto-zoom by enforcing 16px minimum on touch inputs */
 @media (max-width: 768px) {
-  .budget-app input,
+  .budget-app input:not(.amount-input-control),
   .budget-app select,
   .budget-app textarea {
     font-size: 16px !important;
@@ -960,73 +960,363 @@
 
   /* Form Card on Mobile */
   .form-card {
-    padding: 1.25rem 1rem;
-    border-radius: 20px;
+    padding: 1.25rem 0.85rem !important;
+    border-radius: 18px !important;
+    width: 100% !important;
   }
 
   .form-card h2 {
-    font-size: 1.4rem !important;
-  }
-
-  /* Quick Amounts bar grid on mobile */
-  .quick-amounts-bar {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.4rem;
-  }
-
-  .quick-amounts-bar > span {
-    grid-column: 1 / -1;
-  }
-
-  .quick-amount-chip {
-    text-align: center;
-    padding: 0.5rem 0.25rem;
-    font-size: 0.85rem;
-  }
-
-  /* Time helpers on mobile */
-  .time-helpers-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.35rem;
-  }
-
-  .time-helpers-bar > span {
-    grid-column: 1 / -1;
-  }
-
-  .time-helper-btn {
-    text-align: center;
-    justify-content: center;
-    padding: 0.4rem 0.2rem;
-    font-size: 0.74rem;
+    font-size: 1.35rem !important;
   }
 }
 
-/* Extra Small Screens (<= 480px, e.g. iPhone SE, compact phones) */
+/* ==========================================================================
+   Add Transaction Page Semantic Responsive Elements
+   ========================================================================== */
+.budget-nav-crumb {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.crumb-back-btn {
+  padding: 0.45rem 0.85rem !important;
+  font-size: 0.82rem !important;
+}
+
+.crumb-separator {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.crumb-title {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.form-header-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-avatar-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ig-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.6rem;
+  box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
+}
+
+.form-title-text {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.form-subtitle-text {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  margin-top: 0.2rem;
+}
+
+/* Budget Alerts */
+.budget-alert-box {
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.budget-alert-box.alert-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.budget-alert-box.alert-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+}
+
+/* Amount Input Box */
+.amount-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.amount-currency-symbol {
+  position: absolute;
+  left: 1.15rem;
+  font-size: clamp(1.4rem, 4.5vw, 1.75rem);
+  font-weight: 800;
+  color: #e1306c;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.amount-input-control {
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 2.85rem !important;
+  font-size: clamp(1.5rem, 5vw, 1.85rem) !important;
+  font-weight: 800 !important;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 56px;
+}
+
+.amount-input-control:focus {
+  border-color: #e1306c;
+  box-shadow: 0 0 0 3px rgba(225, 48, 108, 0.25);
+}
+
+/* Quick Amounts */
+.quick-amounts-bar {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.quick-amounts-label {
+  font-size: 0.74rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.quick-amounts-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.quick-amount-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 0.45rem 0.2rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+  justify-content: center;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.quick-amount-chip:hover {
+  background: rgba(225, 48, 108, 0.15);
+  border-color: rgba(225, 48, 108, 0.4);
+  color: #ffffff;
+}
+
+/* Time Helpers */
+.time-helpers-bar {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.time-helpers-label {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.time-helpers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.time-helper-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  border-radius: 8px;
+  padding: 0.4rem 0.2rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: 38px;
+  width: 100%;
+  touch-action: manipulation;
+  text-align: center;
+}
+
+.time-helper-btn:hover {
+  background: rgba(225, 48, 108, 0.15);
+  border-color: rgba(225, 48, 108, 0.4);
+  color: #ffffff;
+}
+
+.time-helper-btn.time-helper-now {
+  background: rgba(225, 48, 108, 0.12);
+  border-color: rgba(225, 48, 108, 0.3);
+  color: #fda4af;
+}
+
+/* Datetime Input Box */
+.datetime-input-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.datetime-input-control {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.92rem !important;
+  font-weight: 500;
+  outline: none;
+  color-scheme: dark;
+}
+
+.form-hint-note {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* Tags Search & Chips */
+.tag-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.tag-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.tag-search-control {
+  width: 100%;
+  padding: 0.6rem 0.75rem 0.6rem 2.25rem !important;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 0.85rem !important;
+  outline: none;
+  min-height: 40px;
+}
+
+.tag-option-item.tag-option-create {
+  background: rgba(225, 48, 108, 0.15) !important;
+  border-color: #e1306c !important;
+  color: #fda4af !important;
+  width: 100%;
+  justify-content: center;
+  word-break: break-all;
+}
+
+.tags-empty-note {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Description & Submit */
+.description-input-control {
+  width: 100%;
+  padding: 0.75rem 1rem !important;
+  font-size: 0.9rem !important;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #ffffff;
+  outline: none;
+  min-height: 44px;
+}
+
+.submit-spend-btn {
+  width: 100%;
+  padding: 0.9rem !important;
+  font-size: 1.02rem !important;
+  border-radius: 16px;
+  margin-top: 0.75rem;
+  min-height: 50px;
+  font-weight: 700;
+}
+
+/* Extra Small Screens (<= 480px) */
 @media (max-width: 480px) {
   .budget-app {
-    padding: 0.65rem 0.5rem 6.5rem;
+    padding: 0.5rem 0.35rem calc(85px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .budget-header h1 {
-    font-size: 1.45rem !important;
+    font-size: 1.35rem !important;
   }
 
   .summary-box-amount {
-    font-size: 1.65rem;
+    font-size: 1.55rem;
   }
 
   .summary-box-meta {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
   }
 
-  .time-helpers-bar {
-    grid-template-columns: repeat(2, 1fr);
+  .quick-amounts-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 
-  .quick-amounts-bar {
-    grid-template-columns: repeat(3, 1fr);
+  .time-helpers-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .amount-input-control {
+    padding: 0.8rem 0.75rem 0.8rem 2.6rem !important;
+    font-size: 1.45rem !important;
+  }
+
+  .amount-currency-symbol {
+    left: 0.9rem;
+    font-size: 1.35rem;
   }
 }

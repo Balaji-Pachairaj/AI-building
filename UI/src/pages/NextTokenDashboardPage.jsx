@@ -166,7 +166,7 @@ const NextTokenDashboardPage = () => {
 
           <h1
             style={{
-              fontSize: '2.25rem',
+              fontSize: 'clamp(1.5rem, 5vw, 2.25rem)',
               fontWeight: 800,
               color: 'var(--text-primary)',
               letterSpacing: '-0.5px',

@@ -254,6 +254,7 @@ const ViewTransactionsPage = () => {
             {filteredList.map((tx) => (
               <div
                 key={tx._id}
+                className="transaction-log-card"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -263,12 +264,12 @@ const ViewTransactionsPage = () => {
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                   borderRadius: '14px',
                   flexWrap: 'wrap',
-                  gap: '1rem',
+                  gap: '0.85rem',
                   transition: 'all 0.2s',
                 }}
               >
                 {/* Left: Amount & Details */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', minWidth: '220px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', minWidth: '0', flex: '1 1 200px' }}>
                   <div
                     style={{
                       width: '44px',

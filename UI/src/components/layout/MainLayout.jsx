@@ -9,9 +9,9 @@ import { checkServerHealth } from '../../features/health/healthSlice';
 const MainLayout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Real-time backend status for mobile header pill
+  // Real-time backend status for top bar pill
   const { status, duration } = useSelector((state) => state.health);
   const isUp = status === 'succeeded';
   const isChecking = status === 'loading';
@@ -21,46 +21,53 @@ const MainLayout = () => {
     dispatch(checkServerHealth());
   }, [dispatch]);
 
-  // Close mobile sidebar on route change
+  // Close sidebar on route change
   useEffect(() => {
-    setMobileSidebarOpen(false);
+    setSidebarOpen(false);
   }, [location.pathname]);
 
   return (
     <div className="app-layout">
-      {/* Mobile Top Header (Visible on screen widths < 992px) */}
-      <header className="mobile-header">
-        <button
-          type="button"
-          onClick={() => setMobileSidebarOpen(true)}
-          className="mobile-menu-btn"
-          aria-label="Open Navigation Menu"
-        >
-          <Menu size={22} />
-        </button>
+      {/* Universal Top Bar with Hamburger Menu Button */}
+      <header className="app-topbar">
+        <div className="app-topbar-left">
+          <button
+            type="button"
+            onClick={() => setSidebarOpen((prev) => !prev)}
+            className="topbar-hamburger-btn"
+            aria-label="Toggle Navigation Menu"
+            title="Open side navigation menu"
+          >
+            <Menu size={22} />
+          </button>
 
-        <Link to="/" className="mobile-brand">
-          <Server size={20} color="var(--accent-primary)" />
-          <span>API Manager</span>
-          <span className="nav-brand-badge">Hub</span>
-        </Link>
+          <Link to="/" className="topbar-brand">
+            <div className="topbar-brand-icon">
+              <Server size={18} color="var(--accent-primary)" />
+            </div>
+            <span className="topbar-brand-title">API Manager</span>
+            <span className="nav-brand-badge">Hub</span>
+          </Link>
+        </div>
 
-        <div className="mobile-health-pill">
-          <span
-            className={`pulse-dot ${
-              isChecking ? 'offline' : isUp ? 'online' : 'offline'
-            }`}
-          />
-          <span className="mobile-health-label">
-            {isChecking ? 'Checking' : isUp ? `${duration || 0}ms` : 'Offline'}
-          </span>
+        <div className="topbar-right">
+          <div className="topbar-health-pill" title="Backend API Connection Status">
+            <span
+              className={`pulse-dot ${
+                isChecking ? 'checking' : isUp ? 'online' : 'offline'
+              }`}
+            />
+            <span className="topbar-health-label">
+              {isChecking ? 'Checking...' : isUp ? `API Online (${duration || 0}ms)` : 'API Offline'}
+            </span>
+          </div>
         </div>
       </header>
 
       {/* Side Navigation Bar with Expandable Application Menus */}
       <Sidebar
-        isOpen={mobileSidebarOpen}
-        onClose={() => setMobileSidebarOpen(false)}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
       />
 
       {/* Main Content Area */}

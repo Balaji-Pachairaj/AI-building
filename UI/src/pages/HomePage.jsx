@@ -110,7 +110,7 @@ const HomePage = () => {
           <div
             key={app.id}
             onClick={() => navigate(app.dashboardRoute)}
-            className="card"
+            className="card home-app-card"
             style={{
               marginBottom: 0,
               padding: '1.5rem',
@@ -133,7 +133,7 @@ const HomePage = () => {
             }}
           >
             {/* Left: App Icon & Info */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1 }}>
+            <div className="home-app-card-left" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1 }}>
               <div
                 style={{
                   width: '52px',
@@ -188,7 +188,7 @@ const HomePage = () => {
                 e.stopPropagation();
                 navigate(app.dashboardRoute);
               }}
-              className="btn btn-primary"
+              className="btn btn-primary home-app-card-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

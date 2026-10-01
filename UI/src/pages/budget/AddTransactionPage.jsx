@@ -148,110 +148,55 @@ const AddTransactionPage = () => {
   return (
     <div className="budget-app">
       {/* Back button header */}
-      <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div className="budget-nav-crumb">
         <button
           onClick={() => navigate('/budget_padmanabhan')}
-          className="ig-outline-btn"
-          style={{ padding: '0.45rem 0.9rem' }}
+          className="ig-outline-btn crumb-back-btn"
         >
           <ArrowLeft size={16} />
           <span>Dashboard</span>
         </button>
-        <span style={{ color: '#64748b' }}>/</span>
-        <span style={{ fontSize: '0.9rem', color: '#94a3b8', fontWeight: 600 }}>
-          New Spend Entry
-        </span>
+        <span className="crumb-separator">/</span>
+        <span className="crumb-title">New Spend Entry</span>
       </div>
 
       <div className="form-card">
         {/* Form Title */}
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              borderRadius: '50%',
-              background: 'var(--ig-gradient)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 0.75rem',
-              boxShadow: '0 4px 15px rgba(225, 48, 108, 0.4)',
-            }}
-          >
+        <div className="form-header-title">
+          <div className="form-avatar-icon">
             <Sparkles size={28} color="#ffffff" />
           </div>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, margin: 0 }}>
+          <h2 className="form-title-text">
             Log <span className="ig-gradient-text">Spend</span>
           </h2>
-          <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: '0.25rem' }}>
-            Record money spent with amount, time & multiple tags
+          <p className="form-subtitle-text">
+            Record money spent with amount, time &amp; multiple tags
           </p>
         </div>
 
         {/* Error / Success Alerts */}
         {formError && (
-          <div
-            style={{
-              background: 'rgba(239, 68, 68, 0.15)',
-              border: '1px solid rgba(239, 68, 68, 0.3)',
-              color: '#fca5a5',
-              padding: '0.75rem 1rem',
-              borderRadius: '12px',
-              marginBottom: '1.5rem',
-              fontSize: '0.85rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
+          <div className="budget-alert-box alert-error">
             <AlertCircle size={16} color="#ef4444" />
             <span>{formError}</span>
           </div>
         )}
 
         {successMessage && (
-          <div
-            style={{
-              background: 'rgba(16, 185, 129, 0.15)',
-              border: '1px solid rgba(16, 185, 129, 0.3)',
-              color: '#6ee7b7',
-              padding: '0.75rem 1rem',
-              borderRadius: '12px',
-              marginBottom: '1.5rem',
-              fontSize: '0.85rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
+          <div className="budget-alert-box alert-success">
             <CheckCircle2 size={16} color="#10b981" />
             <span>{successMessage} Redirecting to dashboard...</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="spend-entry-form">
           {/* FIELD 1: Transaction Amount */}
           <div className="form-group-custom">
             <label className="form-label-custom">
               1) Transaction Amount (Amount I spend) *
             </label>
-            <div
-              style={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <span
-                style={{
-                  position: 'absolute',
-                  left: '1.25rem',
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  color: '#e1306c',
-                }}
-              >
+            <div className="amount-input-box">
+              <span className="amount-currency-symbol">
                 {cur}
               </span>
               <input
@@ -262,43 +207,32 @@ const AddTransactionPage = () => {
                 placeholder="0.00"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '1rem 1rem 1rem 3rem',
-                  fontSize: '1.6rem',
-                  fontWeight: 800,
-                  background: 'rgba(15, 23, 42, 0.8)',
-                  border: '1.5px solid rgba(255, 255, 255, 0.12)',
-                  borderRadius: '16px',
-                  color: '#ffffff',
-                  outline: 'none',
-                  transition: 'border-color 0.2s',
-                }}
-                onFocus={(e) => (e.target.style.borderColor = '#e1306c')}
-                onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.12)')}
+                className="amount-input-control"
                 autoFocus
               />
             </div>
 
             {/* Quick Amount Helper Chips */}
             <div className="quick-amounts-bar">
-              <span style={{ fontSize: '0.75rem', color: '#64748b', alignSelf: 'center' }}>
+              <span className="quick-amounts-label">
                 Quick add:
               </span>
-              {[50, 100, 200, 500, 1000, 2000].map((val) => (
-                <button
-                  type="button"
-                  key={val}
-                  onClick={() => addAmount(val)}
-                  className="quick-amount-chip"
-                >
-                  +{cur}{val}
-                </button>
-              ))}
+              <div className="quick-amounts-grid">
+                {[50, 100, 200, 500, 1000, 2000].map((val) => (
+                  <button
+                    type="button"
+                    key={val}
+                    onClick={() => addAmount(val)}
+                    className="quick-amount-chip"
+                  >
+                    +{cur}{val}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* FIELD 2: Time with Helper Buttons (-10m, -30m, -1h) */}
+          {/* FIELD 2: Time with Helper Buttons */}
           <div className="form-group-custom">
             <label className="form-label-custom">
               2) Time (When did I spend?) *
@@ -306,77 +240,60 @@ const AddTransactionPage = () => {
 
             {/* Helper Buttons Above Field */}
             <div className="time-helpers-bar">
-              <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginRight: '0.25rem' }}>
-                Helper options:
+              <span className="time-helpers-label">
+                Quick adjust:
               </span>
-              <button
-                type="button"
-                onClick={() => shiftTimeBackward(10)}
-                className="time-helper-btn"
-                title="Shift time backward by 10 minutes"
-              >
-                <Clock size={12} />
-                <span>-10 mins</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => shiftTimeBackward(30)}
-                className="time-helper-btn"
-                title="Shift time backward by 30 minutes"
-              >
-                <Clock size={12} />
-                <span>-30 mins</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => shiftTimeBackward(60)}
-                className="time-helper-btn"
-                title="Shift time backward by 1 hour"
-              >
-                <Clock size={12} />
-                <span>-1 hour</span>
-              </button>
-              <button
-                type="button"
-                onClick={resetTimeToNow}
-                className="time-helper-btn"
-                style={{ marginLeft: 'auto', background: 'rgba(225, 48, 108, 0.1)', color: '#fda4af' }}
-              >
-                Now
-              </button>
+              <div className="time-helpers-grid">
+                <button
+                  type="button"
+                  onClick={() => shiftTimeBackward(10)}
+                  className="time-helper-btn"
+                  title="Shift time backward by 10 minutes"
+                >
+                  <Clock size={12} />
+                  <span>-10m</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => shiftTimeBackward(30)}
+                  className="time-helper-btn"
+                  title="Shift time backward by 30 minutes"
+                >
+                  <Clock size={12} />
+                  <span>-30m</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => shiftTimeBackward(60)}
+                  className="time-helper-btn"
+                  title="Shift time backward by 1 hour"
+                >
+                  <Clock size={12} />
+                  <span>-1h</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={resetTimeToNow}
+                  className="time-helper-btn time-helper-now"
+                  title="Reset to current time"
+                >
+                  Now
+                </button>
+              </div>
             </div>
 
             {/* DateTime Input */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                background: 'rgba(15, 23, 42, 0.8)',
-                border: '1.5px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '14px',
-                padding: '0.75rem 1rem',
-              }}
-            >
+            <div className="datetime-input-box">
               <Calendar size={18} color="#e1306c" />
               <input
                 type="datetime-local"
                 value={transactionTime}
                 onChange={(e) => setTransactionTime(e.target.value)}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#ffffff',
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
-                  width: '100%',
-                  outline: 'none',
-                  colorScheme: 'dark',
-                }}
+                className="datetime-input-control"
               />
             </div>
-            <span style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.35rem', display: 'block' }}>
-              Default selected as current date and time. Click buttons above to shift backward.
+            <span className="form-hint-note">
+              Default selected as current date and time. Click helper buttons above to shift backward.
             </span>
           </div>
 
@@ -390,7 +307,7 @@ const AddTransactionPage = () => {
               {/* Selected Tags Display */}
               <div className="tags-selected-chips">
                 {selectedTags.length === 0 ? (
-                  <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                  <span className="tags-empty-note">
                     No tags selected yet. Pick or search from below.
                   </span>
                 ) : (
@@ -400,7 +317,7 @@ const AddTransactionPage = () => {
                       <button
                         type="button"
                         onClick={() => toggleTag(t)}
-                        title="Remove tag"
+                        title={`Remove #${t}`}
                       >
                         <X size={14} />
                       </button>
@@ -410,11 +327,11 @@ const AddTransactionPage = () => {
               </div>
 
               {/* Tag Search Input */}
-              <div style={{ position: 'relative' }}>
+              <div className="tag-search-box">
                 <Search
                   size={15}
                   color="#64748b"
-                  style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)' }}
+                  className="tag-search-icon"
                 />
                 <input
                   type="text"
@@ -427,16 +344,7 @@ const AddTransactionPage = () => {
                       handleCreateNewTagInline(e);
                     }
                   }}
-                  style={{
-                    width: '100%',
-                    padding: '0.6rem 0.75rem 0.6rem 2.25rem',
-                    background: 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '10px',
-                    color: '#ffffff',
-                    fontSize: '0.85rem',
-                    outline: 'none',
-                  }}
+                  className="tag-search-control"
                 />
               </div>
 
@@ -469,12 +377,7 @@ const AddTransactionPage = () => {
                     <button
                       type="button"
                       onClick={handleCreateNewTagInline}
-                      className="tag-option-item"
-                      style={{
-                        background: 'rgba(225, 48, 108, 0.15)',
-                        borderColor: '#e1306c',
-                        color: '#fda4af',
-                      }}
+                      className="tag-option-item tag-option-create"
                     >
                       <Plus size={12} />
                       <span>Create tag "#{tagSearch.trim().toLowerCase()}"</span>
@@ -494,16 +397,7 @@ const AddTransactionPage = () => {
               placeholder="e.g. Swiggy biryani dinner with friends"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                fontSize: '0.9rem',
-                background: 'rgba(15, 23, 42, 0.8)',
-                border: '1.5px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '12px',
-                color: '#ffffff',
-                outline: 'none',
-              }}
+              className="description-input-control"
             />
           </div>
 
@@ -511,14 +405,7 @@ const AddTransactionPage = () => {
           <button
             type="submit"
             disabled={transactionCreate.status === 'loading'}
-            className="ig-gradient-btn"
-            style={{
-              width: '100%',
-              padding: '1rem',
-              fontSize: '1.05rem',
-              borderRadius: '16px',
-              marginTop: '0.5rem',
-            }}
+            className="ig-gradient-btn submit-spend-btn"
           >
             {transactionCreate.status === 'loading' ? (
               <span>Saving Transaction...</span>
