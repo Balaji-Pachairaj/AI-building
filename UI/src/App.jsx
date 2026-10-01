@@ -11,6 +11,13 @@ import NotFoundPage from './pages/NotFoundPage';
 
 import GraphNextTokenPage from './pages/GraphNextTokenPage';
 
+// Budget Padmanabhan Pages
+import BudgetDashboardPage from './pages/budget/BudgetDashboardPage';
+import AddTransactionPage from './pages/budget/AddTransactionPage';
+import AddTagsPage from './pages/budget/AddTagsPage';
+import TagAnalysisPage from './pages/budget/TagAnalysisPage';
+import ViewTransactionsPage from './pages/budget/ViewTransactionsPage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +31,14 @@ function App() {
           {/* Landing route '/' with list linking to all applications */}
           <Route index element={<HomePage />} />
           <Route path="apps" element={<Navigate to="/" replace />} />
+
+          {/* Budget Padmanabhan Application Routes */}
+          <Route path="budget_padmanabhan" element={<BudgetDashboardPage />} />
+          <Route path="budget-padmanabhan" element={<Navigate to="/budget_padmanabhan" replace />} />
+          <Route path="budget_padmanabhan/add-transaction" element={<AddTransactionPage />} />
+          <Route path="budget_padmanabhan/add-tags" element={<AddTagsPage />} />
+          <Route path="budget_padmanabhan/tags/:tagName/analysis" element={<TagAnalysisPage />} />
+          <Route path="budget_padmanabhan/transactions" element={<ViewTransactionsPage />} />
 
           {/* Next Token Prediction Dashboard */}
           <Route path="next_token" element={<NextTokenDashboardPage />} />

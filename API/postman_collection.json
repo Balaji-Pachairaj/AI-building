@@ -1327,6 +1327,230 @@
           ]
         }
       ]
+    },
+    {
+      "name": "05. Budget Padmanabhan (Money Management)",
+      "description": "Endpoints for managing personal finances, tracking expenses with multi-tags, calculating money spent and remaining budget, and generating tag analytics.",
+      "item": [
+        {
+          "name": "1. Get Dashboard Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/budget/dashboard?startDate=2026-10-01&endDate=2026-10-31",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "dashboard"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-10-01",
+                  "description": "Start date filter (YYYY-MM-DD)"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-10-31",
+                  "description": "End date filter (YYYY-MM-DD)"
+                }
+              ]
+            },
+            "description": "Returns total money spent, monthly budget, money remaining, and sorted list of tags with individual spent amounts."
+          }
+        },
+        {
+          "name": "2. Get All Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/budget/tags",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "tags"
+              ]
+            },
+            "description": "Returns all unique lowercase tags registered in the application."
+          }
+        },
+        {
+          "name": "3. Create New Tag",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"gadgets\",\n  \"color\": \"#833ab4\",\n  \"description\": \"Electronics and devices\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/budget/tags",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "tags"
+              ]
+            },
+            "description": "Creates a new unique lowercase tag for categorizing transactions."
+          }
+        },
+        {
+          "name": "4. Log New Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 350,\n  \"time\": \"2026-10-01T14:30:00.000Z\",\n  \"tags\": [\n    \"food\",\n    \"shopping\"\n  ],\n  \"description\": \"Lunch and stationery\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/budget/transactions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "transactions"
+              ]
+            },
+            "description": "Logs an expense transaction with amount, timestamp, and multiple tags."
+          }
+        },
+        {
+          "name": "5. Get Transactions List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/budget/transactions?startDate=2026-10-01&endDate=2026-10-31",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-10-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-10-31"
+                },
+                {
+                  "key": "tag",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Returns list of transactions within the date range, along with total amount and average amount."
+          }
+        },
+        {
+          "name": "6. Get Tag Analysis",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/budget/tags/food/analysis?startDate=2026-10-01&endDate=2026-10-31",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "tags",
+                "food",
+                "analysis"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-10-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-10-31"
+                }
+              ]
+            },
+            "description": "Returns total amount spent, average amount spent, and daily timeline for Bar and Line chart visualization."
+          }
+        },
+        {
+          "name": "7. Get Budget Settings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/budget/settings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "settings"
+              ]
+            },
+            "description": "Returns the active monthly budget configuration."
+          }
+        },
+        {
+          "name": "8. Update Budget Settings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"monthlyBudget\": 60000,\n  \"currency\": \"₹\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/budget/settings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "budget",
+                "settings"
+              ]
+            },
+            "description": "Updates the active monthly budget amount used to calculate Money Remaining."
+          }
+        }
+      ]
     }
   ],
   "variable": [

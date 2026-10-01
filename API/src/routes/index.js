@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const buildingStuffsRoutes = require('./buildingStuffs.routes');
+const budgetRoutes = require('./budget.routes');
 const logRoutes = require('./log.routes');
 const nextTokenRoutes = require('./next-token.routes');
 const modelsRoutes = require('./models.routes');
@@ -20,6 +21,7 @@ router.get('/health', (req, res) => {
 router.post('/hit', recordHit);
 
 // Feature routes
+router.use('/budget', budgetRoutes);
 router.use('/building-stuffs', buildingStuffsRoutes);
 router.use('/logs', logRoutes);
 router.use('/', nextTokenRoutes);

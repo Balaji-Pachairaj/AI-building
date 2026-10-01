@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { LayoutGrid, Activity, Layers, Zap, Database, Server, Sparkles } from 'lucide-react';
+import { LayoutGrid, Activity, Layers, Zap, Database, Server, Sparkles, Wallet } from 'lucide-react';
 
 const Navbar = () => {
   const { status, duration } = useSelector((state) => state.health);
@@ -27,6 +27,15 @@ const Navbar = () => {
               >
                 <LayoutGrid size={16} />
                 <span>All Apps</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/budget_padmanabhan"
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                <Wallet size={16} color="#e1306c" />
+                <span>Budget Padmanabhan</span>
               </NavLink>
             </li>
             <li>

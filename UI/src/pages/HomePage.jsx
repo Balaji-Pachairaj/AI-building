@@ -8,9 +8,22 @@ import {
   Layers,
   Sparkles,
   PlusCircle,
+  Wallet,
 } from 'lucide-react';
 
 const APPLICATIONS = [
+  {
+    id: 'budget-padmanabhan',
+    name: 'Budget Padmanabhan',
+    category: 'Finance & Money Management',
+    tag: 'v1.0.0',
+    status: 'Active',
+    icon: <Wallet size={24} color="#e1306c" />,
+    iconBg: 'linear-gradient(135deg, rgba(225, 48, 108, 0.2), rgba(64, 93, 230, 0.2))',
+    description:
+      'Manage personal money spent with multi-tag categorization, date range expense tracking, and interactive ECharts spending analytics.',
+    dashboardRoute: '/budget_padmanabhan',
+  },
   {
     id: 'next-token-prediction',
     name: 'Next Token Prediction',
