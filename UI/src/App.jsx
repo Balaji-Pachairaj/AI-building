@@ -18,6 +18,13 @@ import AddTagsPage from './pages/budget/AddTagsPage';
 import TagAnalysisPage from './pages/budget/TagAnalysisPage';
 import ViewTransactionsPage from './pages/budget/ViewTransactionsPage';
 
+// Habit Tracker Pages
+import HabitDailyTrackerPage from './pages/habits/HabitDailyTrackerPage';
+import HabitAnalyticsPage from './pages/habits/HabitAnalyticsPage';
+import HabitSingleAnalyticsPage from './pages/habits/HabitSingleAnalyticsPage';
+import HabitSleepAnalyticsPage from './pages/habits/HabitSleepAnalyticsPage';
+import HabitManagePage from './pages/habits/HabitManagePage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +38,16 @@ function App() {
           {/* Landing route '/' with list linking to all applications */}
           <Route index element={<HomePage />} />
           <Route path="apps" element={<Navigate to="/" replace />} />
+
+          {/* Habit Tracker Application Routes */}
+          <Route path="habits" element={<HabitDailyTrackerPage />} />
+          <Route path="habit-tracker" element={<Navigate to="/habits" replace />} />
+          <Route path="habits/analytics" element={<HabitAnalyticsPage />} />
+          <Route path="habits/sleep-analytics" element={<HabitSleepAnalyticsPage />} />
+          <Route path="habits/sleep" element={<Navigate to="/habits/sleep-analytics" replace />} />
+          <Route path="habits/single-analytics" element={<HabitSingleAnalyticsPage />} />
+          <Route path="habits/single-analytics/:habitId" element={<HabitSingleAnalyticsPage />} />
+          <Route path="habits/manage" element={<HabitManagePage />} />
 
           {/* Budget Padmanabhan Application Routes */}
           <Route path="budget_padmanabhan" element={<BudgetDashboardPage />} />

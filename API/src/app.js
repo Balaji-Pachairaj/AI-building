@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const apiRoutes = require('./routes');
 const buildingStuffsRoutes = require('./routes/buildingStuffs.routes');
 const budgetRoutes = require('./routes/budget.routes');
+const habitRoutes = require('./routes/habit.routes');
 const nextTokenRoutes = require('./routes/next-token.routes');
 const modelsRoutes = require('./routes/models.routes');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
@@ -98,6 +99,12 @@ app.get('/', async (req, res, next) => {
         budgetDashboard: '/api/budget/dashboard or /budget/dashboard',
         budgetTransactions: '/api/budget/transactions or /budget/transactions',
         budgetTags: '/api/budget/tags or /budget/tags',
+        habits: '/api/habits or /habits',
+        habitsCurrentDay: '/api/habits/days/current',
+        habitsStartDay: '/api/habits/days/start (POST)',
+        habitsSleep: '/api/habits/days/sleep (POST)',
+        habitsHit: '/api/habits/hits (POST)',
+        habitsAnalytics: '/api/habits/analytics/overview',
       },
     });
   } catch (error) {
@@ -114,6 +121,9 @@ app.use('/building-stuffs', buildingStuffsRoutes);
 
 // Direct "/budget" route for Budget Padmanabhan
 app.use('/budget', budgetRoutes);
+
+// Direct "/habits" route for Habit Tracker
+app.use('/habits', habitRoutes);
 
 // Modular API routes mounted under /api
 app.use('/api', apiRoutes);

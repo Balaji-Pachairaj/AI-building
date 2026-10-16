@@ -19,6 +19,11 @@ import {
   Compass,
   RefreshCw,
   X,
+  Moon,
+  Bed,
+  CheckSquare,
+  LineChart,
+  SlidersHorizontal,
 } from 'lucide-react';
 import { checkServerHealth } from '../../features/health/healthSlice';
 import '../../styles/sidebar.css';
@@ -28,6 +33,55 @@ import '../../styles/sidebar.css';
  * Defines each application, its metadata, route prefixes, and expandable sub-pages
  */
 export const APPLICATIONS_CONFIG = [
+  {
+    id: 'habit-tracker',
+    name: 'Habit Tracker',
+    category: 'Consistency & Flow',
+    tag: 'v1.0.0',
+    accentColor: '#10b981',
+    icon: Moon,
+    iconBg: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(99, 102, 241, 0.2))',
+    baseRoute: '/habits',
+    matchPatterns: ['/habits', '/habit-tracker'],
+    subPages: [
+      {
+        id: 'habits-daily-tracker',
+        name: "Today's Tracker",
+        path: '/habits',
+        exact: true,
+        icon: CheckSquare,
+        badge: 'Night Owl',
+      },
+      {
+        id: 'habits-analytics',
+        name: 'Days & Hours Analytics',
+        path: '/habits/analytics',
+        icon: LineChart,
+        badge: 'ECharts',
+      },
+      {
+        id: 'habits-sleep-analytics',
+        name: 'Sleep Analytics',
+        path: '/habits/sleep-analytics',
+        icon: Bed,
+        badge: 'Recovery',
+      },
+      {
+        id: 'habits-single-analytics',
+        name: 'Per-Habit Deep Dive',
+        path: '/habits/single-analytics',
+        icon: Activity,
+        badge: 'Charts',
+      },
+      {
+        id: 'habits-manage',
+        name: 'Configure Habits',
+        path: '/habits/manage',
+        icon: SlidersHorizontal,
+        badge: '11 Protocols',
+      },
+    ],
+  },
   {
     id: 'budget-padmanabhan',
     name: 'Budget Padmanabhan',

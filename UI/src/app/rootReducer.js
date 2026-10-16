@@ -6,8 +6,10 @@ import logsReducer from '../features/logs/logsSlice';
 import notificationReducer from '../features/notifications/notificationSlice';
 import nextTokenReducer from '../features/nextToken/nextTokenSlice';
 import budgetReducer from '../features/budget/budgetSlice';
+import habitsReducer from '../features/habits/habitsSlice';
 
 const rootReducer = combineReducers({
+  habits: habitsReducer,
   budget: budgetReducer,
   nextToken: nextTokenReducer,
   health: healthReducer,

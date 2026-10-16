@@ -173,3 +173,23 @@ curl -X POST http://localhost:5000/building-stuffs/hit \
 ```bash
 curl http://localhost:5000/api/logs
 ```
+
+---
+
+## 🌙 Habit Tracker API (Night Owl 6-Month Consistency)
+
+### Habit Tracker Endpoints:
+- `GET /api/habits` — Retrieve all 11 configured habits (auto-seeds defaults if empty)
+- `POST /api/habits` — Add a custom habit
+- `PUT /api/habits/:id` — Update habit details
+- `DELETE /api/habits/:id` — Delete habit
+- `GET /api/habits/days/current` — Current awake cycle status (isTrackerStarted, hasActiveDay, elapsed hours, today's hits)
+- `POST /api/habits/days/start` — Start tracking / begin Day 1 or next day
+- `POST /api/habits/days/sleep` — Press Sleep button (closes active day, records sleep event, computes totalHours)
+- `GET /api/habits/days` — Table of days (start time, end time, total hours, completion rate)
+- `POST /api/habits/hits` — Record a habit hit (`habitId`, `timestamp`, `notes`)
+- `DELETE /api/habits/hits/:habitId` — Undo a habit hit
+- `GET /api/habits/analytics/overview` — Overview analytics (line chart data: hours vs day, completion bar chart, streaks)
+- `GET /api/habits/analytics/habit/:habitId` — Single habit deep-dive (hourly 12 AM - 11:59 PM distribution, day-by-day status)
+- `GET /api/habits/sleep-logs` — History of sleep button presses and cycle durations
+
