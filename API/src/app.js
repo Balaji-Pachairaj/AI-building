@@ -7,6 +7,7 @@ const apiRoutes = require('./routes');
 const buildingStuffsRoutes = require('./routes/buildingStuffs.routes');
 const budgetRoutes = require('./routes/budget.routes');
 const habitRoutes = require('./routes/habit.routes');
+const sleepRoutes = require('./routes/sleep.routes');
 const nextTokenRoutes = require('./routes/next-token.routes');
 const modelsRoutes = require('./routes/models.routes');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
@@ -99,6 +100,10 @@ app.get('/', async (req, res, next) => {
         budgetDashboard: '/api/budget/dashboard or /budget/dashboard',
         budgetTransactions: '/api/budget/transactions or /budget/transactions',
         budgetTags: '/api/budget/tags or /budget/tags',
+        sleepStatus: '/api/sleep/status or /sleep/status',
+        sleepRecord: '/api/sleep/sleep (POST)',
+        sleepWakeUp: '/api/sleep/wake-up (POST)',
+        sleepAnalytics: '/api/sleep/analytics or /sleep/analytics',
         habits: '/api/habits or /habits',
         habitsCurrentDay: '/api/habits/days/current',
         habitsStartDay: '/api/habits/days/start (POST)',
@@ -121,6 +126,9 @@ app.use('/building-stuffs', buildingStuffsRoutes);
 
 // Direct "/budget" route for Budget Padmanabhan
 app.use('/budget', budgetRoutes);
+
+// Direct "/sleep" route for Sleep Tracker
+app.use('/sleep', sleepRoutes);
 
 // Direct "/habits" route for Habit Tracker
 app.use('/habits', habitRoutes);

@@ -27,4 +27,12 @@ export const ENDPOINTS = {
   BUDGET_TRANSACTIONS: '/api/budget/transactions',
   BUDGET_TRANSACTION_BY_ID: (id) => `/api/budget/transactions/${id}`,
   BUDGET_SETTINGS: '/api/budget/settings',
+
+  // Sleep Tracker Endpoints
+  SLEEP_STATUS: '/api/sleep/status',
+  SLEEP_RECORD: '/api/sleep/sleep',
+  SLEEP_WAKE_UP: '/api/sleep/wake-up',
+  SLEEP_ANALYTICS: '/api/sleep/analytics',
+  SLEEP_RECORDS: '/api/sleep/records',
+  SLEEP_SESSION_BY_ID: (id) => `/api/sleep/sessions/${id}`,
 };

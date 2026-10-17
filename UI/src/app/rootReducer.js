@@ -7,8 +7,10 @@ import notificationReducer from '../features/notifications/notificationSlice';
 import nextTokenReducer from '../features/nextToken/nextTokenSlice';
 import budgetReducer from '../features/budget/budgetSlice';
 import habitsReducer from '../features/habits/habitsSlice';
+import sleepReducer from '../features/sleep/sleepSlice';
 
 const rootReducer = combineReducers({
+  sleep: sleepReducer,
   habits: habitsReducer,
   budget: budgetReducer,
   nextToken: nextTokenReducer,

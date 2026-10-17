@@ -18,7 +18,11 @@ import AddTagsPage from './pages/budget/AddTagsPage';
 import TagAnalysisPage from './pages/budget/TagAnalysisPage';
 import ViewTransactionsPage from './pages/budget/ViewTransactionsPage';
 
-// Habit Tracker Pages
+// Sleep Tracker Pages
+import SleepTrackerPage from './pages/sleep/SleepTrackerPage';
+import SleepAnalyticsPage from './pages/sleep/SleepAnalyticsPage';
+
+// Habit Tracker Pages (Legacy/Redirects)
 import HabitDailyTrackerPage from './pages/habits/HabitDailyTrackerPage';
 import HabitAnalyticsPage from './pages/habits/HabitAnalyticsPage';
 import HabitSingleAnalyticsPage from './pages/habits/HabitSingleAnalyticsPage';
@@ -39,12 +43,17 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="apps" element={<Navigate to="/" replace />} />
 
-          {/* Habit Tracker Application Routes */}
-          <Route path="habits" element={<HabitDailyTrackerPage />} />
-          <Route path="habit-tracker" element={<Navigate to="/habits" replace />} />
+          {/* Dedicated Sleep Tracker Application Routes */}
+          <Route path="sleep" element={<SleepTrackerPage />} />
+          <Route path="sleep/analytics" element={<SleepAnalyticsPage />} />
+
+          {/* Habit Tracker Aliases & Redirects to Sleep Tracker */}
+          <Route path="habits" element={<Navigate to="/sleep" replace />} />
+          <Route path="habit-tracker" element={<Navigate to="/sleep" replace />} />
+          <Route path="habits/sleep-analytics" element={<Navigate to="/sleep/analytics" replace />} />
+          <Route path="habits/sleep" element={<Navigate to="/sleep/analytics" replace />} />
+          <Route path="habits/daily" element={<HabitDailyTrackerPage />} />
           <Route path="habits/analytics" element={<HabitAnalyticsPage />} />
-          <Route path="habits/sleep-analytics" element={<HabitSleepAnalyticsPage />} />
-          <Route path="habits/sleep" element={<Navigate to="/habits/sleep-analytics" replace />} />
           <Route path="habits/single-analytics" element={<HabitSingleAnalyticsPage />} />
           <Route path="habits/single-analytics/:habitId" element={<HabitSingleAnalyticsPage />} />
           <Route path="habits/manage" element={<HabitManagePage />} />

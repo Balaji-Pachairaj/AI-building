@@ -14,16 +14,16 @@ import {
 
 const APPLICATIONS = [
   {
-    id: 'habit-tracker',
-    name: 'Habit Tracker',
-    category: 'Consistency & Flow (12 AM - 11:59 PM)',
+    id: 'sleep-tracker',
+    name: 'Sleep Tracker',
+    category: 'Night Owl Recovery & AI Foundations',
     tag: 'v1.0.0',
     status: 'Active',
-    icon: <Moon size={24} color="#10b981" />,
-    iconBg: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(99, 102, 241, 0.2))',
+    icon: <Moon size={24} color="#818cf8" />,
+    iconBg: 'linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(16, 185, 129, 0.2))',
     description:
-      '6-Month Night Owl Consistency Tracker with 11 core protocols, sleep-to-sleep awake day cycles, live elapsed duration, and deep-dive ECharts analytics.',
-    dashboardRoute: '/habits',
+      'Dedicated sleep recovery tracker for your North Star goal (AI Research Foundations from Google Skills). Click Going to Sleep tonight, hit Wake Up tomorrow to compute rest duration, and view comprehensive ECharts analytics.',
+    dashboardRoute: '/sleep',
   },
   {
     id: 'budget-padmanabhan',

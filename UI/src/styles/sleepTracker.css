@@ -1,0 +1,532 @@
+/* =========================================================================
+   Sleep Tracker - Peaceful Night Owl & Awakening Theme
+   ========================================================================= */
+
+.sleep-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  color: #f1f5f9;
+}
+
+/* -------------------------------------------------------------------------
+   North Star Banner: AI Research Foundations
+   ------------------------------------------------------------------------- */
+.sleep-north-star-banner {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 16px;
+  padding: 1.25rem 1.75rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.north-star-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.north-star-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f46e5, #059669);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.4);
+}
+
+.north-star-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.north-star-text p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.north-star-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* -------------------------------------------------------------------------
+   Sleep Hero Section
+   ------------------------------------------------------------------------- */
+.sleep-hero-card {
+  background: linear-gradient(180deg, #0e1626 0%, #080d18 100%);
+  border: 1px solid #1e293b;
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2.5rem;
+}
+
+.sleep-hero-card::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sleep-hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+}
+
+.sleep-hero-status-pill.sleeping {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #a5b4fc;
+}
+
+.pulsing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+}
+
+.pulsing-dot.sleeping {
+  background: #818cf8;
+  animation: sleepPulse 2s infinite ease-in-out;
+}
+
+@keyframes sleepPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.6);
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 12px 4px rgba(129, 140, 248, 0.8);
+  }
+}
+
+.sleep-hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sleep-hero-subtitle {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0 auto 2.5rem;
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------
+   Large Tactile Action Buttons
+   ------------------------------------------------------------------------- */
+.sleep-action-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0 2rem;
+}
+
+.btn-sleep-primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.4);
+  background: radial-gradient(circle at 35% 35%, #232c4d 0%, #11182c 100%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 35px rgba(99, 102, 241, 0.25), inset 0 2px 8px rgba(255, 255, 255, 0.15);
+  position: relative;
+  user-select: none;
+}
+
+.btn-sleep-primary:hover {
+  transform: scale(1.05);
+  border-color: rgba(129, 140, 248, 0.8);
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.45), inset 0 2px 12px rgba(255, 255, 255, 0.25);
+}
+
+.btn-sleep-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-wake-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 158, 11, 0.5);
+  background: radial-gradient(circle at 35% 35%, #78350f 0%, #291505 100%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.35), inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  position: relative;
+  user-select: none;
+  animation: morningGlow 3s infinite alternate;
+}
+
+@keyframes morningGlow {
+  0% {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 55px rgba(245, 158, 11, 0.6);
+  }
+}
+
+.btn-wake-up:hover {
+  transform: scale(1.05);
+  border-color: #fbbf24;
+  box-shadow: 0 0 60px rgba(245, 158, 11, 0.65), inset 0 2px 14px rgba(255, 255, 255, 0.3);
+}
+
+.btn-wake-up:active {
+  transform: scale(0.97);
+}
+
+.btn-action-icon {
+  margin-bottom: 0.6rem;
+}
+
+.btn-action-label {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.btn-action-hint {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------
+   Live Elapsed Timer
+   ------------------------------------------------------------------------- */
+.live-sleep-timer-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 16px;
+  padding: 1.25rem 2rem;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.live-timer-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #818cf8;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.live-timer-digits {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(129, 140, 248, 0.5);
+}
+
+.live-timer-meta {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 0.4rem;
+}
+
+/* -------------------------------------------------------------------------
+   Notes Input Card
+   ------------------------------------------------------------------------- */
+.sleep-notes-input-wrapper {
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.sleep-notes-input {
+  flex: 1;
+  background: #111a2e;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  color: #f8fafc;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.sleep-notes-input:focus {
+  border-color: #6366f1;
+}
+
+/* -------------------------------------------------------------------------
+   Stats & Metrics Grid
+   ------------------------------------------------------------------------- */
+.sleep-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.sleep-metric-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.sleep-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: #334155;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.metric-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-bottom: 0.25rem;
+  line-height: 1.1;
+}
+
+.metric-subtitle {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* -------------------------------------------------------------------------
+   Quality Badges
+   ------------------------------------------------------------------------- */
+.badge-quality {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-quality.OPTIMAL {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-quality.FAIR {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.badge-quality.SHORT {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-quality.LONG {
+  background: rgba(236, 72, 153, 0.15);
+  color: #f472b6;
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.badge-quality.IN_PROGRESS {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* -------------------------------------------------------------------------
+   Charts Section
+   ------------------------------------------------------------------------- */
+.sleep-chart-panel {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.chart-panel-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.chart-panel-subtitle {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+/* -------------------------------------------------------------------------
+   Sleep History Table
+   ------------------------------------------------------------------------- */
+.sleep-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+}
+
+.sleep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.sleep-table th {
+  background: #111a2e;
+  padding: 0.9rem 1.2rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #1e293b;
+}
+
+.sleep-table td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #1e293b;
+  color: #e2e8f0;
+}
+
+.sleep-table tr:hover {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+/* -------------------------------------------------------------------------
+   Feedback messages
+   ------------------------------------------------------------------------- */
+.sleep-toast-banner {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sleep-toast-banner.error {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+.btn-toast-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+}
+
